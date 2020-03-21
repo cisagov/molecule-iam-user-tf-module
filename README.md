@@ -47,11 +47,8 @@ module "example" {
 
 | Name | Description |
 |------|-------------|
-| id | The EC2 instance ID |
-| arn | The EC2 instance ARN |
-| availability_zone | The AZ where the EC2 instance is deployed |
-| private_ip | The private IP of the EC2 instance |
-| subnet_id | The ID of the subnet where the EC2 instance is deployed |
+| access_key | The IAM access key associated with the IAM user created by this module. |
+| user | The IAM user created by this module. |
 
 ## Contributing ##
 
