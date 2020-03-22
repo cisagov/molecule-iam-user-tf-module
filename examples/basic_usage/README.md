@@ -12,5 +12,5 @@ Note that this example may create resources which cost money. Run
 
 | Name | Description |
 |------|-------------|
-| access_key | The IAM access key associated with the IAM user created by this module. |
-| user | The IAM user created by this module. |
+| access_key | The IAM access key for the test-molecule-iam-user-tf-module user. |
+| user | The test-molecule-iam-user-tf-module IAM user. |
