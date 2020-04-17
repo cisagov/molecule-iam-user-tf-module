@@ -46,6 +46,12 @@ module "example" {
 | access_key | The IAM access key associated with the IAM user created by this module. |
 | user | The IAM user created by this module. |
 
+## Notes ##
+
+Running `pre-commit` requires running `terraform init` in every directory that
+contains Terraform code. In this repository, these are the main directory and
+every directory under `examples/`.
+
 ## Contributing ##
 
 We welcome contributions!  Please see [here](CONTRIBUTING.md) for
