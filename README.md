@@ -7,6 +7,8 @@ testing of an Ansible role.
 
 ## Usage ##
 
+### Multi-Account Usage ###
+
 ```hcl
 module "example" {
   source = "github.com/cisagov/molecule-iam-user-tf-module"
@@ -27,6 +29,24 @@ module "example" {
 }
 ```
 
+### Single Account Usage ###
+
+```hcl
+module "example" {
+  source = "github.com/cisagov/molecule-iam-user-tf-module"
+
+  aws_region = "us-east-2"
+
+  ssm_parameters = ["/example/parameter1", "/example/config/*"]
+  user_name      = "test-molecule-iam-user-tf-module"
+
+  tags = {
+    Team        = "VM Fusion - Development"
+    Application = "molecule-iam-user-tf-module testing"
+  }
+}
+```
+
 ## Examples ##
 
 * [Create an AWS IAM user capable of reading SSM Parameter Store parameters](https://github.com/cisagov/molecule-iam-user-tf-module/tree/develop/examples/basic_usage)
@@ -35,6 +55,7 @@ module "example" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-------:|:--------:|
+| aws_region | The region to use for all AWS resources created. | string | `us-east-1` | no |
 | ssm_parameters | The AWS SSM parameters that the IAM user needs to be able to read (e.g. ["/example/parameter1", "/example/config/*"]). | list(string) | | yes |
 | user_name | The name to associate with the AWS IAM user (e.g. test-molecule-iam-user-tf-module) | string | | yes |
 | tags | Tags to apply to all AWS resources created | map(string) | `{}` | no |

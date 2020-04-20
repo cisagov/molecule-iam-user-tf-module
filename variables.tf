@@ -19,6 +19,12 @@ variable "user_name" {
 # These parameters have reasonable defaults.
 # ------------------------------------------------------------------------------
 
+variable "aws_region" {
+  type        = string
+  description = "The region to use for all AWS resources created."
+  default     = "us-east-1"
+}
+
 variable "tags" {
   type        = map(string)
   description = "Tags to apply to all AWS resources created."
