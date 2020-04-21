@@ -35,7 +35,11 @@ module "example" {
 module "example" {
   source = "github.com/cisagov/molecule-iam-user-tf-module"
 
-  aws_region = "us-east-2"
+  providers = {
+    aws                   = aws
+    aws.images-production = aws
+    aws.images-staging    = aws
+  }
 
   ssm_parameters = ["/example/parameter1", "/example/config/*"]
   user_name      = "test-molecule-iam-user-tf-module"
@@ -55,7 +59,6 @@ module "example" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-------:|:--------:|
-| aws_region | The region to use for all AWS resources created. | string | `us-east-1` | no |
 | ssm_parameters | The AWS SSM parameters that the IAM user needs to be able to read (e.g. ["/example/parameter1", "/example/config/*"]). | list(string) | | yes |
 | user_name | The name to associate with the AWS IAM user (e.g. test-molecule-iam-user-tf-module) | string | | yes |
 | tags | Tags to apply to all AWS resources created | map(string) | `{}` | no |
