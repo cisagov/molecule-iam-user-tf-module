@@ -7,6 +7,8 @@ testing of an Ansible role.
 
 ## Usage ##
 
+### Multi-Account Usage ###
+
 ```hcl
 module "example" {
   source = "github.com/cisagov/molecule-iam-user-tf-module"
@@ -27,6 +29,51 @@ module "example" {
 }
 ```
 
+### Single Account Usage ###
+
+```hcl
+module "example" {
+  source = "github.com/cisagov/molecule-iam-user-tf-module"
+
+  providers = {
+    aws                   = aws
+    aws.images-production = aws
+    aws.images-staging    = aws
+  }
+
+  ssm_parameters = ["/example/parameter1", "/example/config/*"]
+  user_name      = "test-molecule-iam-user-tf-module"
+
+  tags = {
+    Team        = "VM Fusion - Development"
+    Application = "molecule-iam-user-tf-module testing"
+  }
+}
+```
+
+#### Single Account Caveats ####
+
+This module is designed to create the role and associated policies in two
+accounts: staging and production. When run with a single account, you will
+receive errors when it tries to create the role and policies in the second
+internal provider as seen here:
+
+```console
+Error: Error creating IAM policy ParameterStoreReadOnly-test-molecule-iam-user-tf-module: EntityAlreadyExists: A policy called ParameterStoreReadOnly-test-molecule-iam-user-tf-module already exists. Duplicate names are not allowed.
+  status code: 409, request id: <removed>
+
+  on .terraform/modules/iam_user.parameterstorereadonly_role_production/policy.tf line 21, in resource "aws_iam_policy" "ssm_policy":
+  21: resource "aws_iam_policy" "ssm_policy" {
+
+Error: Error creating IAM Role ParameterStoreReadOnly-test-molecule-iam-user-tf-module: EntityAlreadyExists: Role with name ParameterStoreReadOnly-test-molecule-iam-user-tf-module already exists.
+  status code: 409, request id: <removed>
+
+  on .terraform/modules/iam_user.parameterstorereadonly_role_production/role.tf line 25, in resource "aws_iam_role" "ssm_role":
+  25: resource "aws_iam_role" "ssm_role" {
+```
+
+In this case these errors are expected and can be safely ignored.
+
 ## Examples ##
 
 * [Create an AWS IAM user capable of reading SSM Parameter Store parameters](https://github.com/cisagov/molecule-iam-user-tf-module/tree/develop/examples/basic_usage)
@@ -45,6 +92,12 @@ module "example" {
 |------|-------------|
 | access_key | The IAM access key associated with the IAM user created by this module. |
 | user | The IAM user created by this module. |
+
+## Notes ##
+
+Running `pre-commit` requires running `terraform init` in every directory that
+contains Terraform code. In this repository, these are the main directory and
+every directory under `examples/`.
 
 ## Contributing ##
 
