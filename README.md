@@ -83,6 +83,8 @@ In this case these errors are expected and can be safely ignored.
 | Name | Version |
 |------|---------|
 | aws | n/a |
+| aws.images-production-ssm | n/a |
+| aws.images-staging-ssm | n/a |
 | aws.images-production-provisionaccount | n/a |
 | aws.images-staging-provisionaccount | n/a |
 
