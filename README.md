@@ -14,17 +14,20 @@ module "example" {
   source = "github.com/cisagov/molecule-iam-user-tf-module"
 
   providers = {
-    aws                   = aws
-    aws.images-production = aws.images-production
-    aws.images-staging    = aws.images-staging
+    aws                                    = aws
+    aws.images-production-provisionaccount = aws.images-production-provisionaccount
+    aws.images-staging-provisionaccount    = aws.images-staging-provisionaccount
+    aws.images-production-ssm              = aws.images-production-ssm
+    aws.images-staging-ssm                 = aws.images-staging-ssm
   }
 
+  entity         = "my-repo"
   ssm_parameters = ["/example/parameter1", "/example/config/*"]
-  user_name      = "test-molecule-iam-user-tf-module"
+  user_name      = "test-my-repo"
 
   tags = {
     Team        = "VM Fusion - Development"
-    Application = "molecule-iam-user-tf-module testing"
+    Application = "my-repo testing"
   }
 }
 ```
@@ -36,17 +39,20 @@ module "example" {
   source = "github.com/cisagov/molecule-iam-user-tf-module"
 
   providers = {
-    aws                   = aws
-    aws.images-production = aws
-    aws.images-staging    = aws
+    aws                                    = aws
+    aws.images-production-provisionaccount = aws
+    aws.images-staging-provisionaccount    = aws
+    aws.images-production-ssm              = aws
+    aws.images-staging-ssm                 = aws
   }
 
+  entity         = "my-repo"
   ssm_parameters = ["/example/parameter1", "/example/config/*"]
-  user_name      = "test-molecule-iam-user-tf-module"
+  user_name      = "test-my-repo"
 
   tags = {
     Team        = "VM Fusion - Development"
-    Application = "molecule-iam-user-tf-module testing"
+    Application = "my-repo testing"
   }
 }
 ```
