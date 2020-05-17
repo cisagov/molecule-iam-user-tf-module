@@ -4,16 +4,14 @@ provider "aws" {
   profile = "cool-users-provisionaccount"
 }
 
-# ProvisionParameterStoreReadRoles AWS provider for the
-# Images (Production) account
+# ProvisionAccount AWS provider for the Images (Production) account
 provider "aws" {
   region  = "us-east-1"
   profile = "cool-images-production-provisionaccount"
   alias   = "images-production-provisionaccount"
 }
 
-# ProvisionParameterStoreReadRoles AWS provider for the
-# Images (Staging) account
+# ProvisionAccount AWS provider for the Images (Staging) account
 provider "aws" {
   region  = "us-east-1"
   profile = "cool-images-staging-provisionaccount"
