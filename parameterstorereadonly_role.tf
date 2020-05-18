@@ -12,12 +12,12 @@ module "parameterstorereadonly_role_production" {
   source = "github.com/cisagov/ssm-read-role-tf-module"
 
   providers = {
-    aws = aws.images-production
+    aws = aws.images-production-ssm
   }
 
   account_ids   = [data.aws_caller_identity.users.account_id]
-  entity_name   = var.user_name
-  iam_usernames = [var.user_name]
+  entity_name   = var.entity
+  iam_usernames = [module.ci_user.user.name]
   ssm_names     = var.ssm_parameters
 }
 
@@ -25,11 +25,11 @@ module "parameterstorereadonly_role_staging" {
   source = "github.com/cisagov/ssm-read-role-tf-module"
 
   providers = {
-    aws = aws.images-staging
+    aws = aws.images-staging-ssm
   }
 
   account_ids   = [data.aws_caller_identity.users.account_id]
-  entity_name   = var.user_name
-  iam_usernames = [var.user_name]
+  entity_name   = var.entity
+  iam_usernames = [module.ci_user.user.name]
   ssm_names     = var.ssm_parameters
 }

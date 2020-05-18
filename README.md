@@ -14,17 +14,20 @@ module "example" {
   source = "github.com/cisagov/molecule-iam-user-tf-module"
 
   providers = {
-    aws                   = aws
-    aws.images-production = aws.images-production
-    aws.images-staging    = aws.images-staging
+    aws                                    = aws
+    aws.images-production-provisionaccount = aws.images-production-provisionaccount
+    aws.images-staging-provisionaccount    = aws.images-staging-provisionaccount
+    aws.images-production-ssm              = aws.images-production-ssm
+    aws.images-staging-ssm                 = aws.images-staging-ssm
   }
 
+  entity         = "my-repo"
   ssm_parameters = ["/example/parameter1", "/example/config/*"]
-  user_name      = "test-molecule-iam-user-tf-module"
+  user_name      = "test-my-repo"
 
   tags = {
     Team        = "VM Fusion - Development"
-    Application = "molecule-iam-user-tf-module testing"
+    Application = "my-repo testing"
   }
 }
 ```
@@ -36,17 +39,20 @@ module "example" {
   source = "github.com/cisagov/molecule-iam-user-tf-module"
 
   providers = {
-    aws                   = aws
-    aws.images-production = aws
-    aws.images-staging    = aws
+    aws                                    = aws
+    aws.images-production-provisionaccount = aws
+    aws.images-staging-provisionaccount    = aws
+    aws.images-production-ssm              = aws
+    aws.images-staging-ssm                 = aws
   }
 
+  entity         = "my-repo"
   ssm_parameters = ["/example/parameter1", "/example/config/*"]
-  user_name      = "test-molecule-iam-user-tf-module"
+  user_name      = "test-my-repo"
 
   tags = {
     Team        = "VM Fusion - Development"
-    Application = "molecule-iam-user-tf-module testing"
+    Application = "my-repo testing"
   }
 }
 ```
@@ -78,20 +84,32 @@ In this case these errors are expected and can be safely ignored.
 
 * [Create an AWS IAM user capable of reading SSM Parameter Store parameters](https://github.com/cisagov/molecule-iam-user-tf-module/tree/develop/examples/basic_usage)
 
+## Providers ##
+
+| Name | Version |
+|------|---------|
+| aws | n/a |
+| aws.images-production-ssm | n/a |
+| aws.images-staging-ssm | n/a |
+| aws.images-production-provisionaccount | n/a |
+| aws.images-staging-provisionaccount | n/a |
+
 ## Inputs ##
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-------:|:--------:|
-| ssm_parameters | The AWS SSM parameters that the IAM user needs to be able to read (e.g. ["/example/parameter1", "/example/config/*"]). | list(string) | | yes |
-| user_name | The name to associate with the AWS IAM user (e.g. test-molecule-iam-user-tf-module) | string | | yes |
-| tags | Tags to apply to all AWS resources created | map(string) | `{}` | no |
+|------|-------------|------|---------|:-----:|
+| entity | The name of the entity (usually a GitHub repository) being tested (e.g. molecule-iam-user-tf-module). | `string` | n/a | yes |
+| ssm_parameters | The AWS SSM parameters that the IAM user needs to be able to read (e.g. ["/example/parameter1", "/example/config/*"]). | `list(string)` | n/a | yes |
+| tags | Tags to apply to all AWS resources created. | `map(string)` | `{}` | no |
 
 ## Outputs ##
 
 | Name | Description |
 |------|-------------|
-| access_key | The IAM access key associated with the IAM user created by this module. |
-| user | The IAM user created by this module. |
+| access_key | The IAM access key associated with the CI IAM user created by this module. |
+| production_role | The IAM role that the CI user can assume to read SSM parameters in the production account. |
+| staging_role | The IAM role that the CI user can assume to read SSM parameters in the staging account. |
+| user | The CI IAM user created by this module. |
 
 ## Notes ##
 
