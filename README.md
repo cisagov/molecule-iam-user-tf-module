@@ -84,20 +84,25 @@ In this case these errors are expected and can be safely ignored.
 
 * [Create an AWS IAM user capable of reading SSM Parameter Store parameters](https://github.com/cisagov/molecule-iam-user-tf-module/tree/develop/examples/basic_usage)
 
+## Requirements ##
+
+| Name | Version |
+|------|---------|
+| terraform | ~> 0.12.0 |
+| aws | ~> 2.0 |
+
 ## Providers ##
 
 | Name | Version |
 |------|---------|
-| aws | n/a |
-| aws.images-production-ssm | n/a |
-| aws.images-staging-ssm | n/a |
-| aws.images-production-provisionaccount | n/a |
-| aws.images-staging-provisionaccount | n/a |
+| aws | ~> 2.0 |
+| aws.images-production-provisionaccount | ~> 2.0 |
+| aws.images-staging-provisionaccount | ~> 2.0 |
 
 ## Inputs ##
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | entity | The name of the entity (usually a GitHub repository) being tested (e.g. molecule-iam-user-tf-module). | `string` | n/a | yes |
 | ssm_parameters | The AWS SSM parameters that the IAM user needs to be able to read (e.g. ["/example/parameter1", "/example/config/*"]). | `list(string)` | n/a | yes |
 | tags | Tags to apply to all AWS resources created. | `map(string)` | `{}` | no |
