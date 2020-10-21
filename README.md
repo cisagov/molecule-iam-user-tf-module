@@ -89,15 +89,15 @@ In this case these errors are expected and can be safely ignored.
 | Name | Version |
 |------|---------|
 | terraform | ~> 0.12.0 |
-| aws | ~> 2.0 |
+| aws | ~> 3.0 |
 
 ## Providers ##
 
 | Name | Version |
 |------|---------|
-| aws | ~> 2.0 |
-| aws.images-production-provisionaccount | ~> 2.0 |
-| aws.images-staging-provisionaccount | ~> 2.0 |
+| aws | ~> 3.0 |
+| aws.images-production-provisionaccount | ~> 3.0 |
+| aws.images-staging-provisionaccount | ~> 3.0 |
 
 ## Inputs ##
 
