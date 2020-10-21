@@ -1,5 +1,5 @@
 module "ci_user" {
-  source = "github.com/cisagov/ci-iam-user-tf-module?ref=improvement%2Fuse_tf_aws_3.x_provider"
+  source = "github.com/cisagov/ci-iam-user-tf-module"
 
   providers = {
     aws            = aws
