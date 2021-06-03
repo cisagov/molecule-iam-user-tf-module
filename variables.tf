@@ -19,9 +19,3 @@ variable "ssm_parameters" {
 #
 # These parameters have reasonable defaults.
 # ------------------------------------------------------------------------------
-
-variable "tags" {
-  type        = map(string)
-  description = "Tags to apply to all AWS resources created."
-  default     = {}
-}
