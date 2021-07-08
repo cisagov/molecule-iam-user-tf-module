@@ -1,37 +1,60 @@
+locals {
+  # Default tags to apply to all AWS resources created
+  tags = {
+    Team        = "VM Fusion - Development"
+    Application = "molecule-iam-user-tf-module testing"
+  }
+}
+
 # Default AWS provider (ProvisionAccount for the Users account)
 provider "aws" {
-  region  = "us-east-1"
+  default_tags {
+    tags = local.tags
+  }
   profile = "cool-users-provisionaccount"
+  region  = "us-east-1"
 }
 
 # ProvisionAccount AWS provider for the Images (Production) account
 provider "aws" {
-  region  = "us-east-1"
+  alias = "images-production-provisionaccount"
+  default_tags {
+    tags = local.tags
+  }
   profile = "cool-images-production-provisionaccount"
-  alias   = "images-production-provisionaccount"
+  region  = "us-east-1"
 }
 
 # ProvisionAccount AWS provider for the Images (Staging) account
 provider "aws" {
-  region  = "us-east-1"
+  alias = "images-staging-provisionaccount"
+  default_tags {
+    tags = local.tags
+  }
   profile = "cool-images-staging-provisionaccount"
-  alias   = "images-staging-provisionaccount"
+  region  = "us-east-1"
 }
 
 # ProvisionParameterStoreReadRoles AWS provider for the
 # Images (Production) account
 provider "aws" {
-  region  = "us-east-1"
+  alias = "images-production-ssm"
+  default_tags {
+    tags = local.tags
+  }
   profile = "cool-images-production-provisionparameterstorereadroles"
-  alias   = "images-production-ssm"
+  region  = "us-east-1"
 }
 
 # ProvisionParameterStoreReadRoles AWS provider for the
 # Images (Staging) account
 provider "aws" {
-  region  = "us-east-1"
+  alias = "images-staging-ssm"
+  default_tags {
+    tags = local.tags
+  }
   profile = "cool-images-staging-provisionparameterstorereadroles"
-  alias   = "images-staging-ssm"
+  region  = "us-east-1"
 }
 
 module "iam_user" {
@@ -47,9 +70,4 @@ module "iam_user" {
 
   entity         = "molecule-iam-user-tf-module"
   ssm_parameters = ["/example/parameter1", "/example/config/*"]
-
-  tags = {
-    Team        = "VM Fusion - Development"
-    Application = "molecule-iam-user-tf-module testing"
-  }
 }

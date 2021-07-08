@@ -10,7 +10,6 @@ module "ci_user" {
   role_description = local.role_description
   role_name        = local.role_name
   user_name        = local.user_name
-  tags             = var.tags
 }
 
 # Attach the AWS SSM Parameter Store read role policies to the CI

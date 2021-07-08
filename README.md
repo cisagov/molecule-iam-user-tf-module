@@ -23,12 +23,6 @@ module "example" {
 
   entity         = "my-repo"
   ssm_parameters = ["/example/parameter1", "/example/config/*"]
-  user_name      = "test-my-repo"
-
-  tags = {
-    Team        = "VM Fusion - Development"
-    Application = "my-repo testing"
-  }
 }
 ```
 
@@ -48,12 +42,6 @@ module "example" {
 
   entity         = "my-repo"
   ssm_parameters = ["/example/parameter1", "/example/config/*"]
-  user_name      = "test-my-repo"
-
-  tags = {
-    Team        = "VM Fusion - Development"
-    Application = "my-repo testing"
-  }
 }
 ```
 
@@ -89,31 +77,48 @@ In this case these errors are expected and can be safely ignored.
 | Name | Version |
 |------|---------|
 | terraform | ~> 0.12.0 |
-| aws | ~> 3.0 |
+| aws | ~> 3.38 |
 
 ## Providers ##
 
 | Name | Version |
 |------|---------|
-| aws | ~> 3.0 |
-| aws.images-production-provisionaccount | ~> 3.0 |
-| aws.images-staging-provisionaccount | ~> 3.0 |
+| aws | ~> 3.38 |
+| aws.images-production-provisionaccount | ~> 3.38 |
+| aws.images-staging-provisionaccount | ~> 3.38 |
+
+## Modules ##
+
+| Name | Source | Version |
+|------|--------|---------|
+| ci\_user | github.com/cisagov/ci-iam-user-tf-module |  |
+| parameterstorereadonly\_role\_production | github.com/cisagov/ssm-read-role-tf-module |  |
+| parameterstorereadonly\_role\_staging | github.com/cisagov/ssm-read-role-tf-module |  |
+
+## Resources ##
+
+| Name | Type |
+|------|------|
+| [aws_iam_role_policy_attachment.ssm_production_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_role_policy_attachment.ssm_staging_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_user_policy.assume_parameterstorereadonly](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy) | resource |
+| [aws_caller_identity.users](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
+| [aws_iam_policy_document.assume_parameterstorereadonly_role_doc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 
 ## Inputs ##
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | entity | The name of the entity (usually a GitHub repository) being tested (e.g. molecule-iam-user-tf-module). | `string` | n/a | yes |
-| ssm_parameters | The AWS SSM parameters that the IAM user needs to be able to read (e.g. ["/example/parameter1", "/example/config/*"]). | `list(string)` | n/a | yes |
-| tags | Tags to apply to all AWS resources created. | `map(string)` | `{}` | no |
+| ssm\_parameters | The AWS SSM parameters that the IAM user needs to be able to read (e.g. ["/example/parameter1", "/example/config/*"]). | `list(string)` | n/a | yes |
 
 ## Outputs ##
 
 | Name | Description |
 |------|-------------|
-| access_key | The IAM access key associated with the CI IAM user created by this module. |
-| production_role | The IAM role that the CI user can assume to read SSM parameters in the production account. |
-| staging_role | The IAM role that the CI user can assume to read SSM parameters in the staging account. |
+| access\_key | The IAM access key associated with the CI IAM user created by this module. |
+| production\_role | The IAM role that the CI user can assume to read SSM parameters in the production account. |
+| staging\_role | The IAM role that the CI user can assume to read SSM parameters in the staging account. |
 | user | The CI IAM user created by this module. |
 
 ## Notes ##
