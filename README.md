@@ -70,7 +70,7 @@ In this case these errors are expected and can be safely ignored.
 
 ## Examples ##
 
-* [Create an AWS IAM user capable of reading SSM Parameter Store parameters](https://github.com/cisagov/molecule-iam-user-tf-module/tree/develop/examples/basic_usage)
+- [Create an AWS IAM user capable of reading SSM Parameter Store parameters](https://github.com/cisagov/molecule-iam-user-tf-module/tree/develop/examples/basic_usage)
 
 ## Requirements ##
 
