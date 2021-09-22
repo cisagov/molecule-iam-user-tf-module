@@ -76,7 +76,7 @@ In this case these errors are expected and can be safely ignored.
 
 | Name | Version |
 |------|---------|
-| terraform | ~> 0.14.0 |
+| terraform | ~> 1.0 |
 | aws | ~> 3.38 |
 
 ## Providers ##
@@ -91,9 +91,9 @@ In this case these errors are expected and can be safely ignored.
 
 | Name | Source | Version |
 |------|--------|---------|
-| ci\_user | github.com/cisagov/ci-iam-user-tf-module |  |
-| parameterstorereadonly\_role\_production | github.com/cisagov/ssm-read-role-tf-module |  |
-| parameterstorereadonly\_role\_staging | github.com/cisagov/ssm-read-role-tf-module |  |
+| ci\_user | github.com/cisagov/ci-iam-user-tf-module | n/a |
+| parameterstorereadonly\_role\_production | github.com/cisagov/ssm-read-role-tf-module | n/a |
+| parameterstorereadonly\_role\_staging | github.com/cisagov/ssm-read-role-tf-module | n/a |
 
 ## Resources ##
 

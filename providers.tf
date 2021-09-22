@@ -1,8 +1,3 @@
-# This is the default provider that is used to create resources inside
-# the Users account.
-provider "aws" {
-}
-
 # This is the provider that is used to create the role that can be
 # assumed to perform CI functions.
 provider "aws" {
