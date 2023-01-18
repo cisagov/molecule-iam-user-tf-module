@@ -45,29 +45,6 @@ module "example" {
 }
 ```
 
-#### Single Account Caveats ####
-
-This module is designed to create the role and associated policies in two
-accounts: staging and production. When run with a single account, you will
-receive errors when it tries to create the role and policies in the second
-internal provider as seen here:
-
-```console
-Error: Error creating IAM policy ParameterStoreReadOnly-test-molecule-iam-user-tf-module: EntityAlreadyExists: A policy called ParameterStoreReadOnly-test-molecule-iam-user-tf-module already exists. Duplicate names are not allowed.
-  status code: 409, request id: <removed>
-
-  on .terraform/modules/iam_user.parameterstorereadonly_role_production/policy.tf line 21, in resource "aws_iam_policy" "ssm_policy":
-  21: resource "aws_iam_policy" "ssm_policy" {
-
-Error: Error creating IAM Role ParameterStoreReadOnly-test-molecule-iam-user-tf-module: EntityAlreadyExists: Role with name ParameterStoreReadOnly-test-molecule-iam-user-tf-module already exists.
-  status code: 409, request id: <removed>
-
-  on .terraform/modules/iam_user.parameterstorereadonly_role_production/role.tf line 25, in resource "aws_iam_role" "ssm_role":
-  25: resource "aws_iam_role" "ssm_role" {
-```
-
-In this case these errors are expected and can be safely ignored.
-
 ## Examples ##
 
 - [Basic usage](https://github.com/cisagov/molecule-iam-user-tf-module/tree/develop/examples/basic_usage)
