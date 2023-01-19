@@ -4,7 +4,10 @@ data "aws_iam_policy_document" "assume_parameterstorereadonly_role_doc" {
   statement {
     effect = "Allow"
 
-    actions = ["sts:AssumeRole"]
+    actions = [
+      "sts:AssumeRole",
+      "sts:TagSession",
+    ]
 
     resources = [
       module.parameterstorereadonly_role_production.role.arn,

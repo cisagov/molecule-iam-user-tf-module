@@ -18,6 +18,7 @@ module "parameterstorereadonly_role_production" {
   account_ids   = [data.aws_caller_identity.users.account_id]
   entity_name   = var.entity
   iam_usernames = [module.ci_user.user.name]
+  role_name     = "ParameterStoreReadOnly-%s-Production"
   ssm_names     = var.ssm_parameters
 }
 
@@ -31,5 +32,6 @@ module "parameterstorereadonly_role_staging" {
   account_ids   = [data.aws_caller_identity.users.account_id]
   entity_name   = var.entity
   iam_usernames = [module.ci_user.user.name]
+  role_name     = "ParameterStoreReadOnly-%s-Staging"
   ssm_names     = var.ssm_parameters
 }
