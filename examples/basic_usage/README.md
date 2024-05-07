@@ -8,6 +8,7 @@ followed by the `terraform apply` command.
 Note that this example may create resources which cost money. Run
 `terraform destroy` when you no longer need these resources.
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements ##
 
 | Name | Version |
@@ -39,3 +40,4 @@ No inputs.
 |------|-------------|
 | access\_key | The IAM access key for the test-molecule-iam-user-tf-module user. |
 | user | The test-molecule-iam-user-tf-module IAM user. |
+<!-- END_TF_DOCS -->
