@@ -1,5 +1,5 @@
 # IAM policy document that allows assumption of the ParameterStoreReadOnly
-# role in the Images accounts (Production and Staging) for this user
+# role in the Images account for this user
 data "aws_iam_policy_document" "assume_parameterstorereadonly_role_doc" {
   statement {
     actions = [
@@ -8,16 +8,15 @@ data "aws_iam_policy_document" "assume_parameterstorereadonly_role_doc" {
     ]
     effect = "Allow"
     resources = [
-      module.parameterstorereadonly_role_production.role.arn,
-      module.parameterstorereadonly_role_staging.role.arn
+      module.parameterstorereadonly_role.role.arn
     ]
   }
 }
 
 # The IAM policy allowing this user to assume their custom
-# ParameterStoreReadOnly role in the Images accounts (Production and Staging)
+# ParameterStoreReadOnly role in the Images account
 resource "aws_iam_user_policy" "assume_parameterstorereadonly" {
-  name   = "Images-Assume${module.parameterstorereadonly_role_production.role.name}"
+  name   = "Images-Assume${module.parameterstorereadonly_role.role.name}"
   policy = data.aws_iam_policy_document.assume_parameterstorereadonly_role_doc.json
   user   = module.ci_user.user.name
 }
