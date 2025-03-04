@@ -2,23 +2,22 @@
 
 [![GitHub Build Status](https://github.com/cisagov/molecule-iam-user-tf-module/workflows/build/badge.svg)](https://github.com/cisagov/molecule-iam-user-tf-module/actions)
 
-A Terraform module for creating an IAM user suitable for use in molecule
-testing of an Ansible role.
+A Terraform module for creating an IAM user suitable for use in [Molecule
+testing](https://ansible.readthedocs.io/projects/molecule/) of an
+[Ansible](https://www.redhat.com/en/ansible-collaborative) role.
 
 ## Usage ##
 
-### Multi-Account Usage ###
+### Multi-Provider Usage ###
 
 ```hcl
 module "example" {
   source = "github.com/cisagov/molecule-iam-user-tf-module"
 
   providers = {
-    aws                                    = aws
-    aws.images-production-provisionaccount = aws.images-production-provisionaccount
-    aws.images-staging-provisionaccount    = aws.images-staging-provisionaccount
-    aws.images-production-ssm              = aws.images-production-ssm
-    aws.images-staging-ssm                 = aws.images-staging-ssm
+    aws                         = aws
+    aws.images-provisionaccount = aws.images-provisionaccount
+    aws.images-ssm              = aws.images-ssm
   }
 
   entity         = "my-repo"
@@ -26,18 +25,16 @@ module "example" {
 }
 ```
 
-### Single Account Usage ###
+### Single Provider Usage ###
 
 ```hcl
 module "example" {
   source = "github.com/cisagov/molecule-iam-user-tf-module"
 
   providers = {
-    aws                                    = aws
-    aws.images-production-provisionaccount = aws
-    aws.images-staging-provisionaccount    = aws
-    aws.images-production-ssm              = aws
-    aws.images-staging-ssm                 = aws
+    aws                         = aws
+    aws.images-provisionaccount = aws
+    aws.images-ssm              = aws
   }
 
   entity         = "my-repo"
@@ -62,23 +59,20 @@ module "example" {
 | Name | Version |
 |------|---------|
 | aws | >= 4.9 |
-| aws.images-production-provisionaccount | >= 4.9 |
-| aws.images-staging-provisionaccount | >= 4.9 |
+| aws.images-provisionaccount | >= 4.9 |
 
 ## Modules ##
 
 | Name | Source | Version |
 |------|--------|---------|
-| ci\_user | github.com/cisagov/ci-iam-user-tf-module | n/a |
-| parameterstorereadonly\_role\_production | github.com/cisagov/ssm-read-role-tf-module | n/a |
-| parameterstorereadonly\_role\_staging | github.com/cisagov/ssm-read-role-tf-module | n/a |
+| ci\_user | github.com/cisagov/ci-iam-user-tf-module%3Fref=improvement/modern-env | n/a |
+| parameterstorereadonly\_role | github.com/cisagov/ssm-read-role-tf-module | n/a |
 
 ## Resources ##
 
 | Name | Type |
 |------|------|
-| [aws_iam_role_policy_attachment.ssm_production_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
-| [aws_iam_role_policy_attachment.ssm_staging_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_role_policy_attachment.ssm](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_iam_user_policy.assume_parameterstorereadonly](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy) | resource |
 | [aws_caller_identity.users](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_iam_policy_document.assume_parameterstorereadonly_role_doc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
@@ -95,8 +89,7 @@ module "example" {
 | Name | Description |
 |------|-------------|
 | access\_key | The IAM access key associated with the CI IAM user created by this module. |
-| production\_role | The IAM role that the CI user can assume to read SSM parameters in the production account. |
-| staging\_role | The IAM role that the CI user can assume to read SSM parameters in the staging account. |
+| role | The IAM role that the CI user can assume to read SSM parameters. |
 | user | The CI IAM user created by this module. |
 <!-- END_TF_DOCS -->
 
