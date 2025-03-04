@@ -17,55 +17,33 @@ provider "aws" {
 
 # ProvisionAccount AWS provider for the Images (Production) account
 provider "aws" {
-  alias = "images-production-provisionaccount"
+  alias = "images-provisionaccount"
   default_tags {
     tags = local.tags
   }
-  profile = "cool-images-production-provisionaccount"
-  region  = "us-east-1"
-}
-
-# ProvisionAccount AWS provider for the Images (Staging) account
-provider "aws" {
-  alias = "images-staging-provisionaccount"
-  default_tags {
-    tags = local.tags
-  }
-  profile = "cool-images-staging-provisionaccount"
+  profile = "cool-images-provisionaccount"
   region  = "us-east-1"
 }
 
 # ProvisionParameterStoreReadRoles AWS provider for the
 # Images (Production) account
 provider "aws" {
-  alias = "images-production-ssm"
+  alias = "images-ssm"
   default_tags {
     tags = local.tags
   }
-  profile = "cool-images-production-provisionparameterstorereadroles"
+  profile = "cool-images-provisionparameterstorereadroles"
   region  = "us-east-1"
 }
 
-# ProvisionParameterStoreReadRoles AWS provider for the
-# Images (Staging) account
-provider "aws" {
-  alias = "images-staging-ssm"
-  default_tags {
-    tags = local.tags
-  }
-  profile = "cool-images-staging-provisionparameterstorereadroles"
-  region  = "us-east-1"
-}
 
 module "iam_user" {
   source = "../.."
 
   providers = {
-    aws                                    = aws
-    aws.images-production-provisionaccount = aws.images-production-provisionaccount
-    aws.images-staging-provisionaccount    = aws.images-staging-provisionaccount
-    aws.images-production-ssm              = aws.images-production-ssm
-    aws.images-staging-ssm                 = aws.images-staging-ssm
+    aws                         = aws
+    aws.images-provisionaccount = aws.images-provisionaccount
+    aws.images-ssm              = aws.images-ssm
   }
 
   entity         = "molecule-iam-user-tf-module"
