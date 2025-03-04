@@ -15,7 +15,7 @@ provider "aws" {
   region  = "us-east-1"
 }
 
-# ProvisionAccount AWS provider for the Images (Production) account
+# ProvisionAccount AWS provider for the Images account
 provider "aws" {
   alias = "images-provisionaccount"
   default_tags {
@@ -25,8 +25,7 @@ provider "aws" {
   region  = "us-east-1"
 }
 
-# ProvisionParameterStoreReadRoles AWS provider for the
-# Images (Production) account
+# ProvisionParameterStoreReadRoles AWS provider for the Images account
 provider "aws" {
   alias = "images-ssm"
   default_tags {
