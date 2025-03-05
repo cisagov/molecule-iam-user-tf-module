@@ -1,23 +1,12 @@
 # This is the provider that is used to create the role that can be
 # assumed to perform CI functions.
 provider "aws" {
-  alias = "images-production-provisionaccount"
+  alias = "images-provisionaccount"
 }
 
-# This is the provider that is used to create the role that can be
-# assumed to perform CI functions.
-provider "aws" {
-  alias = "images-staging-provisionaccount"
-}
 
 # This is the provider that is used to create the role and policy that can
-# read Parameter Store parameters inside the Images Production account
+# read Parameter Store parameters inside the Images account
 provider "aws" {
-  alias = "images-production-ssm"
-}
-
-# This is the provider that is used to create the role and policy that can
-# read Parameter Store parameters inside the Images Staging account
-provider "aws" {
-  alias = "images-staging-ssm"
+  alias = "images-ssm"
 }
