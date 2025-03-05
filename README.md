@@ -8,7 +8,7 @@ testing](https://ansible.readthedocs.io/projects/molecule/) of an
 
 ## Usage ##
 
-### Multi-Provider Usage ###
+### Multi-provider usage ###
 
 ```hcl
 module "example" {
@@ -25,7 +25,7 @@ module "example" {
 }
 ```
 
-### Single Provider Usage ###
+### Single provider usage ###
 
 ```hcl
 module "example" {
