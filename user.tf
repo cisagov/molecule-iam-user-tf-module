@@ -19,3 +19,8 @@ resource "aws_iam_role_policy_attachment" "ssm" {
   policy_arn = module.parameterstorereadonly_role[0].policy.arn
   role       = module.ci_user.role.name
 }
+
+moved {
+  from = aws_iam_role_policy_attachment.ssm
+  to   = aws_iam_role_policy_attachment.ssm[0]
+}

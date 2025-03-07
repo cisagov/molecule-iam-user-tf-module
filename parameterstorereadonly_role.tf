@@ -22,3 +22,8 @@ module "parameterstorereadonly_role" {
   role_name     = "ParameterStoreReadOnly-%s"
   ssm_names     = var.ssm_parameters
 }
+
+moved {
+  from = module.parameterstorereadonly_role
+  to   = module.parameterstorereadonly_role[0]
+}
