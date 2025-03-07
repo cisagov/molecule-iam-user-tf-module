@@ -5,7 +5,7 @@ output "access_key" {
 }
 
 output "role" {
-  description = "The IAM role that the CI user can assume to read SSM parameters."
+  description = "The IAM role that the CI user can assume to perform testing."
   value       = module.ci_user.role
 }
 

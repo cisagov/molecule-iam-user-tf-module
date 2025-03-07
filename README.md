@@ -89,7 +89,7 @@ module "example" {
 | Name | Description |
 |------|-------------|
 | access\_key | The IAM access key associated with the CI IAM user created by this module. |
-| role | The IAM role that the CI user can assume to read SSM parameters. |
+| role | The IAM role that the CI user can assume to perform testing. |
 | user | The CI IAM user created by this module. |
 <!-- END_TF_DOCS -->
 
