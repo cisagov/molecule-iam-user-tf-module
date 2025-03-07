@@ -82,14 +82,14 @@ module "example" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | entity | The name of the entity (usually a GitHub repository) being tested (e.g. molecule-iam-user-tf-module). | `string` | n/a | yes |
-| ssm\_parameters | The AWS SSM parameters that the IAM user needs to be able to read (e.g. ["/example/parameter1", "/example/config/*"]). | `list(string)` | n/a | yes |
+| ssm\_parameters | The AWS SSM parameters that the IAM user needs to be able to read (e.g. ["/example/parameter1", "/example/config/*"]). | `list(string)` | `[]` | no |
 
 ## Outputs ##
 
 | Name | Description |
 |------|-------------|
 | access\_key | The IAM access key associated with the CI IAM user created by this module. |
-| role | The IAM role that the CI user can assume to read SSM parameters. |
+| role | The IAM role that the CI user can assume to perform testing. |
 | user | The CI IAM user created by this module. |
 <!-- END_TF_DOCS -->
 
