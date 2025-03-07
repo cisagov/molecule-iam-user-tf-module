@@ -13,8 +13,9 @@ module "ci_user" {
 
 # Attach the AWS SSM Parameter Store read role policy to the CI role
 resource "aws_iam_role_policy_attachment" "ssm" {
+  count    = local.ssm_needed
   provider = aws.images-provisionaccount
 
-  policy_arn = module.parameterstorereadonly_role.policy.arn
+  policy_arn = module.parameterstorereadonly_role[0].policy.arn
   role       = module.ci_user.role.name
 }

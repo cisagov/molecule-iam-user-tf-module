@@ -9,6 +9,7 @@ data "aws_caller_identity" "users" {
 }
 
 module "parameterstorereadonly_role" {
+  count  = local.ssm_needed
   source = "github.com/cisagov/ssm-read-role-tf-module"
 
   providers = {
