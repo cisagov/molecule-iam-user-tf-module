@@ -12,7 +12,7 @@ testing](https://ansible.readthedocs.io/projects/molecule/) of an
 
 ```hcl
 module "example" {
-  source = "github.com/cisagov/molecule-iam-user-tf-module"
+  source = "github.com/cisagov/molecule-iam-user-tf-module?ref=v1.0.0"
 
   providers = {
     aws                         = aws
