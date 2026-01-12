@@ -1,6 +1,8 @@
 # molecule-iam-user-tf-module #
 
 [![GitHub Build Status](https://github.com/cisagov/molecule-iam-user-tf-module/workflows/build/badge.svg)](https://github.com/cisagov/molecule-iam-user-tf-module/actions)
+[![License](https://img.shields.io/github/license/cisagov/molecule-iam-user-tf-module)](https://spdx.org/licenses/)
+[![CodeQL](https://github.com/cisagov/molecule-iam-user-tf-module/workflows/CodeQL/badge.svg)](https://github.com/cisagov/molecule-iam-user-tf-module/actions/workflows/codeql-analysis.yml)
 
 A Terraform module for creating an IAM user suitable for use in [Molecule
 testing](https://ansible.readthedocs.io/projects/molecule/) of an
