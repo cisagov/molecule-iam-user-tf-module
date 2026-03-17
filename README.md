@@ -66,7 +66,7 @@ module "example" {
 ## Modules ##
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | ci\_user | github.com/cisagov/ci-iam-user-tf-module | n/a |
 | parameterstorereadonly\_role | github.com/cisagov/ssm-read-role-tf-module | n/a |
 
