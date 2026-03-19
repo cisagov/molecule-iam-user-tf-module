@@ -12,7 +12,7 @@ Note that this example may create resources which cost money. Run
 ## Requirements ##
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | terraform | ~> 1.1 |
 | aws | ~> 6.7 |
 
@@ -23,7 +23,7 @@ No providers.
 ## Modules ##
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | iam\_user | ../.. | n/a |
 
 ## Resources ##
@@ -37,7 +37,7 @@ No inputs.
 ## Outputs ##
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | access\_key | The IAM access key for the test-molecule-iam-user-tf-module user. |
 | user | The test-molecule-iam-user-tf-module IAM user. |
 <!-- END_TF_DOCS -->
